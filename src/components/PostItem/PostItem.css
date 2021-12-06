@@ -1,0 +1,22 @@
+.post__item {
+    padding: 20px;
+    border: 2px solid navy;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+.post__item-content {
+    max-width: 700px;
+}
+.post__item-title {
+    text-transform: uppercase;
+    margin-bottom: 10px;
+}
+.btn {
+    background: none;
+    padding: 10px 15px;
+    border: 1px solid navy;
+    color: navy;
+    cursor: pointer;
+}
