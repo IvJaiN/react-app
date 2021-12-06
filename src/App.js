@@ -59,7 +59,7 @@ const App = () => {
             <Route exact path='/'>
                 <div className="App">
                     {visitForm ? <AddPost createNewPost={createNewPost} closeModal={closeModal}/> : null}
-                    <button className='btn' onClick={() => setVisitModal(true)}>Create new post</button>
+                    <button className='btn btn-primary mb-3 data-bs-toggle="modal" data-bs-target="#exampleModal">' onClick={() => setVisitModal(true)}>Create new post</button>
                     <PostList
                         posts={posts}
                         removePost={removePost}

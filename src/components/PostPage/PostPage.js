@@ -11,9 +11,17 @@ const PostPage = () => {
     }, [params.id])
 
     async function getCurrentPost(id) {
-        const response = await fetch(`https://jsonplaceholder.typicode.com/posts/${id}`)
-        const data = await response.json()
-        setCurrentPost({...data})
+        try {
+            const response = await fetch(`https://jsonplaceholder.typicode.com/posts/${id}`)
+            if (response.status === 200) {
+                const data = await response.json()
+                setCurrentPost({...data})
+            } else {
+                throw new Error()
+            }
+        } catch (e) {
+            console.error(e)
+        }
     }
 
     return (
