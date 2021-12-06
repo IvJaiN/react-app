@@ -4,7 +4,7 @@ import PostItem from "../PostItem/PostItem";
 const PostList = ({posts, removePost}) => {
     return (
         <ul className='posts__list'>
-            {posts.map(post => (
+            {posts.map((post) => (
                 <PostItem
                     post={post}
                     key={post.id}
