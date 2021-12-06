@@ -8,7 +8,7 @@ const PostPage = () => {
 
     useEffect(() => {
         getCurrentPost(params.id)
-    }, [])
+    }, [params.id])
 
     async function getCurrentPost(id) {
         const response = await fetch(`https://jsonplaceholder.typicode.com/posts/${id}`)

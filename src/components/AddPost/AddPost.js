@@ -2,7 +2,7 @@ import './AddPost.css'
 
 import React, {useState} from 'react';
 
-const AddPost = ({createNewPost}) => {
+const AddPost = ({createNewPost, closeModal}) => {
 
     const [title, setTitle] = useState('')
     const [body, setBody] = useState('')
@@ -20,23 +20,34 @@ const AddPost = ({createNewPost}) => {
     }
 
     return (
-        <div className='form-wrapper'>
-            <form className='form-add' onSubmit={onSubmit}>
+        <div
+            className='form-wrapper'
+            onClick={closeModal}
+        >
+            <form
+                className='form-add'
+                onSubmit={onSubmit}
+                onClick={e => e.stopPropagation()}
+            >
                 <input
-                    className='form-input'
+                    className='form-control mb-3'
                     type="text"
                     placeholder='Post title'
                     value={title}
                     onChange={e => setTitle(e.target.value)}
                 />
                 <input
-                    className='form-input'
+                    className='form-control'
                     type="text"
                     placeholder='Post body'
                     value={body}
                     onChange={e => setBody(e.target.value)}
                 />
-                <button className='btn' onClick={() => createNewPost(post)}>Create</button>
+                <button
+                    className='btn btn-primary mt-2'
+                    onClick={() => createNewPost(post)}
+                    disabled={title === '' || body === ''}
+                >Create</button>
             </form>
         </div>
     );

@@ -1,13 +1,12 @@
 import React from "react";
 import {useState, useEffect} from "react";
-import {BrowserRouter as Router, Route, Link, Switch} from "react-router-dom";
+import {Route, Redirect, Switch} from "react-router-dom";
 
 import AddPost from "./components/AddPost/AddPost";
 import PostList from "./components/PostList/PostList";
 import Pagination from "./components/Pagination/Pagination";
 
 import './App.css'
-import Redirect from "react-router-dom/es/Redirect";
 import PostPage from "./components/PostPage/PostPage";
 
 const App = () => {
@@ -51,11 +50,15 @@ const App = () => {
         setPage(page)
     }
 
+    function closeModal() {
+        setVisitModal(false)
+    }
+
     return (
         <Switch>
             <Route exact path='/'>
                 <div className="App">
-                    {visitForm ? <AddPost createNewPost={createNewPost}/> : null}
+                    {visitForm ? <AddPost createNewPost={createNewPost} closeModal={closeModal}/> : null}
                     <button className='btn' onClick={() => setVisitModal(true)}>Create new post</button>
                     <PostList
                         posts={posts}

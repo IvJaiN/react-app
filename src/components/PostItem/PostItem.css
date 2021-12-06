@@ -4,7 +4,13 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    flex-wrap: wrap;
     margin-bottom: 20px;
+}
+@media (max-width: 920px) {
+    .post__item {
+        justify-content: center;
+    }
 }
 .post__item-content {
     max-width: 700px;
@@ -23,5 +29,5 @@
     border: 1px solid navy;
     color: navy;
     cursor: pointer;
-    margin: 5px 0;
+    margin-top: 15px;
 }
