@@ -21,7 +21,7 @@ const AddPost = ({createNewPost, currentId}) => {
     return (
         <>
             <button type="button"
-                    className="btn btn-primary mb-3"
+                    className="btn btn-secondary mb-3"
                     data-bs-toggle="modal"
                     data-bs-target="#exampleModal">
                 Create new post

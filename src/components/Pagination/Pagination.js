@@ -13,7 +13,7 @@ const Pagination = ({totalPages, page, changePage}) => {
                         className="page-item"
                         onClick={() => changePage(item + 1)}
                     >
-                        <span className="page-link" onClick={() => changePage(item + 1)}>{item + 1}</span>
+                        <span className="page-link " onClick={() => changePage(item + 1)}>{item + 1}</span>
                     </li>))}
             </ul>
         </nav>

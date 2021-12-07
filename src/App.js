@@ -16,21 +16,33 @@ const App = () => {
     const [page, setPage] = useState(1) // current page
     const [totalPages, setTotalPages] = useState(0)
     const [currentId, setCurrentId] = useState(0)
+    const [visiblePosts, setVisiblePosts] = useState([])
 
     const limit = 10
 
     useEffect(() => {
         fetchData()
+    }, [])
+
+    useEffect(() => {
+        setTotalPages(Math.ceil(posts.length / limit)) // calc number pages
+        setVisiblePosts(posts.slice(+`${page - 1}0`, +`${page}0`))
+    }, [posts])
+
+    useEffect(() => {
+        setVisiblePosts(posts.slice(+`${page - 1}0`, +`${page}0`))
     }, [page])
+
 
     async function fetchData() { // get data
         try {
-            const response = await fetch(`https://jsonplaceholder.typicode.com/posts?_limit=${limit}&_page=${page}`)
+            const response = await fetch(`https://jsonplaceholder.typicode.com/posts`)
             if (response.status === 200) {
                 const data = await response.json()
                 setPosts(data)
-                setTotalPages(Math.ceil(response.headers.get('x-total-count') / limit)) // calc number pages
-                setCurrentId(+response.headers.get('x-total-count') + 1)
+                setTotalPages(Math.ceil(data.length / limit)) // calc number pages
+                setCurrentId(data.length + 1)
+                setVisiblePosts(data.slice(0, 10))
             } else {
                 alert('Posts not found')
             }
@@ -56,9 +68,10 @@ const App = () => {
         <Switch>
             <Route exact path='/'>
                 <div className="App container">
+                    <h1 className='text-center'>Posts app</h1>
                     <AddPost createNewPost={createNewPost} currentId={currentId}/>
                     <PostList
-                        posts={posts}
+                        posts={visiblePosts}
                         removePost={removePost}
                     />
                     <Pagination

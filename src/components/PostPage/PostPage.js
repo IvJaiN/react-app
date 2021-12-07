@@ -6,6 +6,7 @@ const PostPage = () => {
     const params = useParams()
     const [currentPost, setCurrentPost] = useState({})
     const [isOk, setIsOk] = useState(false)
+
     let content = null
 
     useEffect(() => {
@@ -33,18 +34,11 @@ const PostPage = () => {
         </>
     } else {
         content = <>
-            <h2>Post not found</h2>
+            <h2>You created this post.</h2>
         </>
     }
 
     return (
-        // <div>
-        //     <h1>Post #{params.id}</h1>
-        //     {content}
-        //     <button className='btn'>
-        //         <Link to='/'>Back</Link>
-        //     </button>
-        // </div>
         <div className='container mt-5'>
             <div className="card text-center">
                 <div className="card-header">
@@ -52,7 +46,7 @@ const PostPage = () => {
                 </div>
                 <div className="card-body">
                     {content}
-                    <button href="#" className="btn btn-outline-primary"><Link to='/'>Go back</Link></button>
+                    <Link to='/' className="btn btn-outline-secondary">Go back</Link>
                 </div>
                 <div className="card-footer text-muted">
                     Provided by the service JSON.placeholder
