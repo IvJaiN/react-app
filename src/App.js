@@ -13,9 +13,10 @@ const App = () => {
 
 
     const [posts, setPosts] = useState([]) // Array posts
-    const [visitForm, setVisitModal] = useState(false) // State modal
     const [page, setPage] = useState(1) // current page
     const [totalPages, setTotalPages] = useState(0)
+    const [currentId, setCurrentId] = useState(0)
+
     const limit = 10
 
     useEffect(() => {
@@ -29,6 +30,7 @@ const App = () => {
                 const data = await response.json()
                 setPosts(data)
                 setTotalPages(Math.ceil(response.headers.get('x-total-count') / limit)) // calc number pages
+                setCurrentId(+response.headers.get('x-total-count') + 1)
             } else {
                 alert('Posts not found')
             }
@@ -42,24 +44,19 @@ const App = () => {
     }
 
     function createNewPost(post) { // function for create post
-        setVisitModal(false)
-        setPosts([post, ...posts])
+        setPosts([...posts, post])
+        setCurrentId(oldId => oldId + 1)
     }
 
     function changePage(page) {
         setPage(page)
     }
 
-    function closeModal() {
-        setVisitModal(false)
-    }
-
     return (
         <Switch>
             <Route exact path='/'>
-                <div className="App">
-                    {visitForm ? <AddPost createNewPost={createNewPost} closeModal={closeModal}/> : null}
-                    <button className='btn btn-primary mb-3 data-bs-toggle="modal" data-bs-target="#exampleModal">' onClick={() => setVisitModal(true)}>Create new post</button>
+                <div className="App container">
+                    <AddPost createNewPost={createNewPost} currentId={currentId}/>
                     <PostList
                         posts={posts}
                         removePost={removePost}
