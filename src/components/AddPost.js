@@ -20,10 +20,12 @@ const AddPost = ({createNewPost, currentId}) => {
 
     return (
         <>
-            <button type="button"
-                    className="btn btn-secondary mb-3"
-                    data-bs-toggle="modal"
-                    data-bs-target="#exampleModal">
+            <button
+                type="button"
+                className="btn btn-secondary mb-3"
+                data-bs-toggle="modal"
+                data-bs-target="#exampleModal"
+            >
                 Create new post
             </button>
             <div
@@ -38,10 +40,11 @@ const AddPost = ({createNewPost, currentId}) => {
                             <h5 className="modal-title"
                                 id="exampleModalLabel"
                             >Add new post</h5>
-                            <button type="button"
-                                    className="btn-close"
-                                    data-bs-dismiss="modal"
-                                    aria-label="Close"
+                            <button
+                                type="button"
+                                className="btn-close"
+                                data-bs-dismiss="modal"
+                                aria-label="Close"
                             ></button>
                         </div>
                         <div className="modal-body">
@@ -50,7 +53,7 @@ const AddPost = ({createNewPost, currentId}) => {
                                     <label
                                         htmlFor="exampleFormControlInput1"
                                         className="form-label"
-                                    >Post title:</label>
+                                    >Enter post title:</label>
                                     <input
                                         type="text"
                                         className="form-control"
@@ -64,12 +67,12 @@ const AddPost = ({createNewPost, currentId}) => {
                                     <label
                                         htmlFor="exampleFormControlInput1"
                                         className="form-label"
-                                    >Post body:</label>
+                                    >Enter post text:</label>
                                     <input
                                         type="email"
                                         className="form-control"
                                         id="exampleFormControlInput1"
-                                        placeholder="Body"
+                                        placeholder="Text"
                                         value={body}
                                         onChange={e => setBody(e.target.value)}
                                     />

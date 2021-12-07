@@ -13,7 +13,7 @@ const PostPage = () => {
         getCurrentPost(params.id)
     }, [params.id])
 
-    async function getCurrentPost(id) {
+    async function getCurrentPost(id) {  // get current post
         try {
             const response = await fetch(`https://jsonplaceholder.typicode.com/posts/${id}`)
             if (response.status === 200) {

@@ -2,21 +2,20 @@ import React from "react";
 import {useState, useEffect} from "react";
 import {Route, Redirect, Switch} from "react-router-dom";
 
-import AddPost from "./components/AddPost/AddPost";
-import PostList from "./components/PostList/PostList";
-import Pagination from "./components/Pagination/Pagination";
+import AddPost from "./components/AddPost";
+import PostList from "./components/PostList";
+import Pagination from "./components/Pagination";
+import PostPage from "./components/PostPage";
 
 import './App.css'
-import PostPage from "./components/PostPage/PostPage";
 
 const App = () => {
-
 
     const [posts, setPosts] = useState([]) // Array posts
     const [page, setPage] = useState(1) // current page
     const [totalPages, setTotalPages] = useState(0)
-    const [currentId, setCurrentId] = useState(0)
-    const [visiblePosts, setVisiblePosts] = useState([])
+    const [currentId, setCurrentId] = useState(0) // id for new post
+    const [visiblePosts, setVisiblePosts] = useState([]) // array posts on screen
 
     const limit = 10
 
@@ -26,11 +25,11 @@ const App = () => {
 
     useEffect(() => {
         setTotalPages(Math.ceil(posts.length / limit)) // calc number pages
-        setVisiblePosts(posts.slice(+`${page - 1}0`, +`${page}0`))
+        setVisiblePosts(posts.slice(+`${page - 1}0`, +`${page}0`)) // update posts on screen
     }, [posts])
 
     useEffect(() => {
-        setVisiblePosts(posts.slice(+`${page - 1}0`, +`${page}0`))
+        setVisiblePosts(posts.slice(+`${page - 1}0`, +`${page}0`)) // update posts on screen on change page
     }, [page])
 
 
@@ -69,7 +68,10 @@ const App = () => {
             <Route exact path='/'>
                 <div className="App container">
                     <h1 className='text-center'>Posts app</h1>
-                    <AddPost createNewPost={createNewPost} currentId={currentId}/>
+                    <AddPost
+                        createNewPost={createNewPost}
+                        currentId={currentId}
+                    />
                     <PostList
                         posts={visiblePosts}
                         removePost={removePost}
